@@ -1,5 +1,27 @@
 <section class="portfolio" id="portfolio">
-    <div class="container">
-
+  <div class="container">
+    <div class="portfolio-textual-wrapper">
+      <div class="decoration-wrapper">
+        <svg class="decoration" width="300" height="21">
+          <use href="/img/sprite.svg#icon-decoration"></use>
+        </svg>
+      </div>
+      <h2 class="portfolio-title">Portfolio Highlights</h2>
     </div>
+    <div class="portfolio-category-buttons-wrapper">
+        <ul class="portfolio-buttons-list">
+            <li><button type="button" class="portfolio-button active" data-category="All Photos">All Photos</button></li>
+            <li><button type="button" class="portfolio-button" data-category="Candid Moments">Candid Moments</button></li>
+            <li><button type="button" class="portfolio-button" data-category="Portrait Perfection">Portrait Perfection</button></li>
+            <li><button type="button" class="portfolio-button" data-category="Ceremony & Vows">Ceremony & Vows</button></li>
+            <li><button type="button" class="portfolio-button" data-category="Joyful Celebrations">Joyful Celebrations</button></li>
+            <li><button type="button" class="portfolio-button" data-category="Standart">Standart</button></li>
+            <li><button type="button" class="portfolio-button" data-category="Attention to Detail">Attention to Detail</button></li>
+        </ul>
+    </div>
+    <div class="portfolio-gallery-wrapper">
+        <ul class="portfolio-gallery-list"></ul>
+        <button type="button" class="button portfolio-button-load-more">Show More</button>
+    </div>
+  </div>
 </section>

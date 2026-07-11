@@ -1,0 +1,40 @@
+.feedbacks-textual-wrapper {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.feedbacks-title {
+  font-size: 32px;
+}
+
+.feedbacks-item {
+  border: 2px solid var(--color-neutral-darkest);
+  border-radius: 16px;
+  background: var(--color-curious-blue-lighter);
+  padding: 32px;
+  display: grid;
+  gap: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .feedbacks-text {
+    justify-self: center;
+    text-align: center;
+    max-width: 627px;
+  }
+  .feedbacks-list {
+    display: flex;
+    gap: 24px;
+  }
+  .feedbacks-item {
+    flex-basis: calc((100% - 24px * 2) / 3);
+  }
+}
+@media screen and (min-width: 1440px) {
+  .feedbacks-title {
+    font-size: 48px;
+  }
+  .feedbacks-text {
+    max-width: 768px;
+  }
+}

@@ -1,5 +1,89 @@
 <section class="contacts" id="contacts">
-    <div class="container">
-
+  <div class="container">
+    <div class="contacts-desktop-wrapper">
+  <div class="contacts-text-address-wrapper">
+      <div class="contacts-textual-wrapper">
+        <div class="decoration-wrapper contacts-decoration">
+          <svg class="decoration" width="300" height="21">
+            <use href="/img/sprite.svg#icon-decoration"></use>
+          </svg>
+        </div>
+        <h2 class="contacts-title">Let's Tell Your Story</h2>
+        <p class="contacts-text">
+          I can't wait to hear more about your wedding! Tell me about your
+          plans, and I'll be in touch to discuss how we can create magic
+          together.
+        </p>
+      </div>
+      <address class="contact-address">
+        <ul class="contact-address-list">
+          <li class="contact-address-item">
+            <a href="mailto:" class="contact-address-link">
+              <svg width="24" height="24" class="contact-address-svg">
+                <use href="/img/sprite.svg#icon-mail"></use>
+              </svg>
+              info@mariakovalenko.com</a
+            >
+          </li>
+          <li class="contact-address-item">
+            <a href="tel:+" class="contact-address-link">
+              <svg width="24" height="24" class="contact-address-svg">
+                <use href="/img/sprite.svg#icon-call"></use>
+              </svg>
+              +40 (555) 123-4567
+            </a>
+          </li>
+          <li class="contact-address-item">
+            <a href="" class="contact-address-link">
+              <svg width="24" height="24" class="contact-address-svg">
+                <use href="/img/sprite.svg#icon-location"></use>
+              </svg>
+              Raschdorffstraße 2-26, 13409 Berlin, Germany</a
+            >
+          </li>
+        </ul>
+      </address>
     </div>
+
+    <div class="contacts-form-wrapper">
+      <form action="" class="contacts-form" novalidate>
+        <label>
+          Name*
+          <input
+            type="text"
+            name="name"
+            placeholder="Maria"
+            aria-describedby="name-error"
+            required
+          />
+          <span class="form-error" id="name-error">
+            Please enter your name
+          </span>
+        </label>
+        <label>
+          Phone*
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+1 (202) 111 2323"
+            aria-describedby="phone-error"
+            required
+          />
+          <span class="form-error" id="phone-error">
+            Please enter your phone
+          </span>
+        </label>
+        <label>
+          Message
+          <textarea
+            name="text"
+            placeholder="Tell me a little about you and your special day. Don't forget to include your wedding date, venue, and what you're most excited about..."
+          ></textarea>
+        </label>
+        <button type="submit" class="contacts-form-button">Let's Talk</button>
+      </form>
+    </div>
+    </div>
+   
+  </div>
 </section>

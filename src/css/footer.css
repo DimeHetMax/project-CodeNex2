@@ -1,0 +1,130 @@
+.footer {
+  padding: 48px 0;
+}
+.footer-content-wrapper {
+  background: var(--color-scheme-2-foreground);
+  border: 2px solid var(--color-scheme-2-border);
+  border-radius: 24px;
+  padding: 48px 20px;
+  display: grid;
+  gap: 24px;
+}
+.footer-logo-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.coppywritng-text {
+  font-size: 14px;
+  text-align: center;
+}
+
+.footer-links {
+  display: grid;
+  gap: 40px;
+}
+.footer-link-title {
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  color: var(--color-scheme-2-text);
+  margin-bottom: 16px;
+}
+.footer-navigation-list {
+  display: grid;
+  gap: 32px;
+  justify-content: center;
+  text-align: center;
+
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-scheme-1-text);
+}
+.footer-navigation-item {
+  transition: all 500ms ease;
+}
+.footer-navigation-item:hover,
+.footer-navigation-item:focus {
+  color: var(--color-curious-blue);
+}
+.footer-socials-link:hover,
+.footer-socials-link:focus {
+  color: var(--color-curious-blue);
+}
+.footer-socials-link > svg {
+  transition: all 500ms ease;
+}
+.footer-socials-link:hover > svg,
+.footer-socials-link:focus > svg {
+  fill: var(--color-curious-blue);
+}
+.footer-socials-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  font-size: 14px;
+  color: var(--color-scheme-2-text);
+  transition: all 500ms ease;
+}
+.footer-socials-link > svg {
+  margin-right: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer-content-wrapper {
+    padding: 48px;
+  }
+  .footer-textual-content {
+    max-width: 376px;
+  }
+  .footer-logo-link {
+    justify-content: flex-start;
+  }
+  .footer-logo-link > svg {
+    width: 128px;
+    height: 100px;
+  }
+  .coppywritng-text {
+    max-width: 376px;
+    text-align: left;
+  }
+  .footer-content-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+  .footer-links {
+    display: flex;
+  }
+  .footer-links > div {
+    max-width: 81px;
+    flex-basis: calc((100% - 40px) / 2);
+  }
+  .footer-link-title {
+    text-align: left;
+  }
+  .footer-navigation-list {
+    text-align: left;
+  }
+  .footer-socials-link {
+    justify-content: flex-start;
+    padding: 10px 0;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .footer-content-wrapper {
+    justify-content: space-between;
+  }
+  .footer-links {
+    width: 372px;
+  }
+  .footer-links > div {
+    max-width: 166px;
+    flex-basis: calc((100% - 40px) / 2);
+  }
+  .footer-navigation-list {
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,21 @@
+.about-textual-content {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.about-text {
+  text-align: center;
+}
+.about-img {
+  border-radius: 24px;
+}
+
+@media screen and (min-width: 1440px) {
+  .about-textual-content {
+    max-width: 779px;
+    margin: 0 auto 40px;
+  }
+  .about-title {
+    font-size: 40px;
+  }
+}
