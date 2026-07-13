@@ -8,7 +8,7 @@ const html = `<div class="modal_success">
     <div class="modal_success-content-wrapper">
       <h2>Thank You for Your Inquiry!</h2>
       <div class="modal_success-img-container">
-        <img src="/img/modal/success-modal.jpg" alt="wedding" />
+        <img src="../img/modal/success-modal.jpg" alt="wedding" />
       </div>
       <p>
         I have received your message and I'm so excited about your interest! I
@@ -19,16 +19,52 @@ const html = `<div class="modal_success">
     </div>
   </div>
 </div>`;
+const addInputError = ({ name, phone, message }) => {
+  if (name === '') {
+    const nameInput = form.elements.name;
+    nameInput.classList.add('is-error');
+    console.log(nameInput);
+  }
+  if (phone === '') {
+    const phoneInput = form.elements.phone;
+    phoneInput.classList.add('is-error');
+    console.log(phoneInput);
+  }
+  if (message === '') {
+    const messageInput = form.elements.message;
+    messageInput.classList.add('is-error');
+    console.log(messageInput);
+  }
+};
+const removeInputError = ({ name, phone, message }) => {
+  if (name === '') {
+    const nameInput = form.elements.name;
+    nameInput.classList.remove('is-error');
+    console.log(nameInput);
+  }
+
+  if (phone === '') {
+    const phoneInput = form.elements.phone;
+    phoneInput.classList.remove('is-error');
+    console.log(phoneInput);
+  }
+  if (message === '') {
+    const messageInput = form.elements.message;
+    messageInput.classList.remove('is-error');
+    console.log(messageInput);
+  }
+};
 
 const handleForm = async e => {
   e.preventDefault();
   const formData = new FormData(form);
   const data = {
-    name: formData.get('name'),
-    phone: formData.get('phone'),
-    message: formData.get('message'),
+    name: formData.get('name').trim(),
+    phone: formData.get('phone').trim(),
+    message: formData.get('message').trim(),
   };
   if (data.name === '' || data.phone === '' || data.message === '') {
+    addInputError(data);
     errorNotification('The field is empty!');
     return;
   }
@@ -40,12 +76,20 @@ const handleForm = async e => {
     });
     if (post.status === 201) {
       success(html);
+      form.reset();
     }
   } catch (error) {
     console.log(error);
     errorNotification(error);
   }
+};
+const inputData = {};
+const onInput = e => {
+  inputData[e.target.name] = e.target.value;
 
-  form.reset();
+  if (e.target.value.trim() !== '') {
+    e.target.classList.remove('is-error');
+  }
 };
 form.addEventListener('submit', handleForm);
+form.addEventListener('input', onInput);
