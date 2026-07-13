@@ -18,6 +18,12 @@
   border-radius: 24px;
   padding: 20px 24px;
   background: var(--color-scheme-2-foreground);
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+.FAQ-item:hover,
+.FAQ-item:focus{
+  background: var(--color-curious-blue-dark);
 }
 .FAQ-item-title-container {
   display: flex;

@@ -43,8 +43,8 @@
   padding: 8px 20px;
   transition: all 1000ms ease;
 }
-.button:hover,
-.button:focus {
+.button:not(:disabled):hover,
+.button:not(:disabled):focus {
   border: 1px solid var(--color-curious-blue);
   background: transparent;
 }
@@ -103,8 +103,8 @@
   width: 100%;
   text-align: center;
 }
-
 .mob-menu {
+  padding-top: 5px;
   position: fixed;
   inset: 0;
   background: var(--color-scheme-2-background);
@@ -119,4 +119,9 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+@media screen and (min-width: 768px) {
+  .mob-menu {
+    display: none;
+  }
 }

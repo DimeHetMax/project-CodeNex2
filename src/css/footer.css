@@ -99,7 +99,7 @@
     display: flex;
   }
   .footer-links > div {
-    max-width: 81px;
+    max-width: 93px;
     flex-basis: calc((100% - 40px) / 2);
   }
   .footer-link-title {
@@ -112,6 +112,11 @@
     justify-content: flex-start;
     padding: 10px 0;
   }
+}
+@media screen and (min-width: 768px) and (max-width: 1439px){
+  .footer-socials-link > svg {
+  margin-right: 2px;
+}
 }
 @media screen and (min-width: 1440px) {
   .footer-content-wrapper {

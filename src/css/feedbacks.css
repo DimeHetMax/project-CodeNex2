@@ -1,3 +1,6 @@
+.swiper {
+  --swiper-pagination-color: #000000;
+}
 .feedbacks-textual-wrapper {
   display: grid;
   gap: 24px;
@@ -6,28 +9,68 @@
 .feedbacks-title {
   font-size: 32px;
 }
+.feedbacks-list {
+  margin-bottom: 32px;
+}
 
 .feedbacks-item {
   border: 2px solid var(--color-neutral-darkest);
   border-radius: 16px;
   background: var(--color-curious-blue-lighter);
-  padding: 32px;
-  display: grid;
-  gap: 24px;
 }
+.feedbacks-item-textual-wrapper {
+  height: 328px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.feedbacks-buttons-container {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+}
+.feedbacks-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
 
+  border: 2px solid var(--color-scheme-1-border);
+  border-radius: 4px;
+  background: var(--color-scheme-2-foreground);
+}
+.feedbacks-button:hover,
+.feedbacks-button:focus {
+  border: 2px solid var(--color-scheme-1-border);
+  background: var(--color-curious-blue-light);
+}
+.feedbacks-button:active {
+  border: 2px solid var(--color-scheme-1-border);
+  background: var(--color-curious-blue-lighter);
+}
+.feedbacks-button:disabled {
+  border: 2px solid var(--color-scheme-1-border);
+  background: var(--color-scheme-1-foreground);
+  opacity: 0.2;
+}
+.feedbacks-custom-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.feedbacks-custom-buttons-wrapper{
+  padding-left: 20px;
+}
 @media screen and (min-width: 768px) {
   .feedbacks-text {
     justify-self: center;
     text-align: center;
     max-width: 627px;
   }
-  .feedbacks-list {
-    display: flex;
-    gap: 24px;
-  }
-  .feedbacks-item {
-    flex-basis: calc((100% - 24px * 2) / 3);
+  .feedbacks-item-textual-wrapper {
+    height: 412px;
+    padding: 20px;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -36,5 +79,9 @@
   }
   .feedbacks-text {
     max-width: 768px;
+  }
+  .feedbacks-item-textual-wrapper {
+    height: 274px;
+    padding: 32px;
   }
 }

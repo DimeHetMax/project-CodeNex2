@@ -9,19 +9,28 @@
       <h2 class="portfolio-title">Portfolio Highlights</h2>
     </div>
     <div class="portfolio-category-buttons-wrapper">
-        <ul class="portfolio-buttons-list">
-            <li><button type="button" class="portfolio-button active" data-category="All Photos">All Photos</button></li>
-            <li><button type="button" class="portfolio-button" data-category="Candid Moments">Candid Moments</button></li>
-            <li><button type="button" class="portfolio-button" data-category="Portrait Perfection">Portrait Perfection</button></li>
-            <li><button type="button" class="portfolio-button" data-category="Ceremony & Vows">Ceremony & Vows</button></li>
-            <li><button type="button" class="portfolio-button" data-category="Joyful Celebrations">Joyful Celebrations</button></li>
-            <li><button type="button" class="portfolio-button" data-category="Standart">Standart</button></li>
-            <li><button type="button" class="portfolio-button" data-category="Attention to Detail">Attention to Detail</button></li>
-        </ul>
+      <ul class="portfolio-buttons-list">
+        <li data-id="1">
+          <button
+            type="button"
+            class="portfolio-button active"
+            data-category="All Photos"
+          >
+            All Photos
+          </button>
+        </li>
+      </ul>
     </div>
     <div class="portfolio-gallery-wrapper">
-        <ul class="portfolio-gallery-list"></ul>
-        <button type="button" class="button portfolio-button-load-more">Show More</button>
+      <ul class="portfolio-gallery-list"></ul>
+      <span class="loader visually-hidden"></span>
+      <p class="portfolio-pagination-text">
+        <span class="portfolio-uploaded-photo">12</span> of
+        <span class="portfolio-total-amount">100</span> photos
+      </p>
+      <button type="button" class="button portfolio-button-load-more">
+        Show More
+      </button>
     </div>
   </div>
 </section>
