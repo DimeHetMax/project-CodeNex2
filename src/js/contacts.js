@@ -2,13 +2,17 @@ import success from './success.js';
 import errorNotification from './errorNotification.js';
 import { orderApi } from './api.js';
 
+const successImage = new URL(
+  '../img/modal/success-modal.jpg',
+  import.meta.url
+).href;
 const form = document.querySelector('.contacts-form');
 const html = `<div class="modal_success">
   <div class="modal_success-container">
     <div class="modal_success-content-wrapper">
       <h2>Thank You for Your Inquiry!</h2>
       <div class="modal_success-img-container">
-        <img src="../img/modal/success-modal.jpg" alt="wedding" />
+        <img src=${successImage} alt="wedding" />
       </div>
       <p>
         I have received your message and I'm so excited about your interest! I
@@ -33,24 +37,6 @@ const addInputError = ({ name, phone, message }) => {
   if (message === '') {
     const messageInput = form.elements.message;
     messageInput.classList.add('is-error');
-    console.log(messageInput);
-  }
-};
-const removeInputError = ({ name, phone, message }) => {
-  if (name === '') {
-    const nameInput = form.elements.name;
-    nameInput.classList.remove('is-error');
-    console.log(nameInput);
-  }
-
-  if (phone === '') {
-    const phoneInput = form.elements.phone;
-    phoneInput.classList.remove('is-error');
-    console.log(phoneInput);
-  }
-  if (message === '') {
-    const messageInput = form.elements.message;
-    messageInput.classList.remove('is-error');
     console.log(messageInput);
   }
 };
