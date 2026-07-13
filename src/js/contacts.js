@@ -28,17 +28,14 @@ const addInputError = ({ name, phone, message }) => {
   if (name === '') {
     const nameInput = form.elements.name;
     nameInput.classList.add('is-error');
-    console.log(nameInput);
   }
   if (phone === '') {
     const phoneInput = form.elements.phone;
     phoneInput.classList.add('is-error');
-    console.log(phoneInput);
   }
   if (message === '') {
     const messageInput = form.elements.message;
     messageInput.classList.add('is-error');
-    console.log(messageInput);
   }
 };
 
