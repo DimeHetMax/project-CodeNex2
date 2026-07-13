@@ -6,6 +6,7 @@ const successImage = new URL(
   '../img/modal/success-modal.jpg',
   import.meta.url
 ).href;
+
 const form = document.querySelector('.contacts-form');
 const html = `<div class="modal_success">
   <div class="modal_success-container">
