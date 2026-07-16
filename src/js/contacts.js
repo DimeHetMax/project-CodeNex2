@@ -13,7 +13,7 @@ const html = `<div class="modal_success">
     <div class="modal_success-content-wrapper">
       <h2>Thank You for Your Inquiry!</h2>
       <div class="modal_success-img-container">
-        <img src=${successImage} alt="wedding" />
+        <img src="${successImage}" alt="Newly married couple" />
       </div>
       <p>
         I have received your message and I'm so excited about your interest! I
@@ -24,21 +24,6 @@ const html = `<div class="modal_success">
     </div>
   </div>
 </div>`;
-const addInputError = ({ name, phone, message }) => {
-  if (name === '') {
-    const nameInput = form.elements.name;
-    nameInput.classList.add('is-error');
-  }
-  if (phone === '') {
-    const phoneInput = form.elements.phone;
-    phoneInput.classList.add('is-error');
-  }
-  if (message === '') {
-    const messageInput = form.elements.message;
-    messageInput.classList.add('is-error');
-  }
-};
-
 const handleForm = async e => {
   e.preventDefault();
   const formData = new FormData(form);
@@ -47,33 +32,27 @@ const handleForm = async e => {
     phone: formData.get('phone').trim(),
     message: formData.get('message').trim(),
   };
-  if (data.name === '' || data.phone === '' || data.message === '') {
-    addInputError(data);
-    errorNotification('The field is empty!');
-    return;
-  }
   try {
-    const post = await orderApi({
-      name: data.name,
-      phone: data.phone,
-      message: data.message,
-    });
+    const post = await orderApi(data);
     if (post.status === 201) {
       success(html);
       form.reset();
     }
   } catch (error) {
-    console.log(error);
-    errorNotification(error);
+    errorNotification(
+      error.response?.data?.message ?? error.message ?? 'Unable to send inquiry'
+    );
   }
 };
-const inputData = {};
 const onInput = e => {
-  inputData[e.target.name] = e.target.value;
-
-  if (e.target.value.trim() !== '') {
+  if (e.target.validity.valid) {
     e.target.classList.remove('is-error');
   }
 };
 form.addEventListener('submit', handleForm);
 form.addEventListener('input', onInput);
+form.addEventListener(
+  'invalid',
+  e => e.target.classList.add('is-error'),
+  true
+);

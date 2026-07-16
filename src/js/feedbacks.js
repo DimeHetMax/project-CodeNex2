@@ -6,66 +6,78 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { feedbacksApi } from './api';
+import errorNotification from './errorNotification.js';
 
 const ulEl = document.querySelector('.feedbacks-list');
 
-const createMarkup = array => {
-  return array
-    .map(({ descr, name }) => {
-      return `
-       <li class="feedbacks-item swiper-slide">
-       <div class="feedbacks-item-textual-wrapper">
-          <p class="feedbacks-comments">
-           ${descr}
-          </p>
-          <p class="feedbacks-names">${name}</p>
-        </div>
-        </li>`;
-    })
-    .join('');
+const createFeedbackItems = feedbacks => {
+  const fragment = document.createDocumentFragment();
+
+  feedbacks.forEach(({ descr, name }) => {
+    const item = document.createElement('li');
+    const wrapper = document.createElement('div');
+    const comment = document.createElement('p');
+    const author = document.createElement('p');
+
+    item.className = 'feedbacks-item swiper-slide';
+    wrapper.className = 'feedbacks-item-textual-wrapper';
+    comment.className = 'feedbacks-comments';
+    author.className = 'feedbacks-names';
+    comment.textContent = descr;
+    author.textContent = name;
+
+    wrapper.append(comment, author);
+    item.append(wrapper);
+    fragment.append(item);
+  });
+
+  return fragment;
 };
-const renderMarkUp = async () => {
-  ulEl.textContent = '';
+
+const initSwiper = () =>
+  new Swiper('.swiper', {
+    modules: [Navigation, Pagination, Mousewheel, Keyboard],
+    spaceBetween: 24,
+    speed: 500,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+    },
+    mousewheel: {
+      forceToAxis: true,
+    },
+    keyboard: {
+      enabled: true,
+      onlyInViewport: true,
+    },
+    navigation: {
+      nextEl: '.feedbacks-button-next',
+      prevEl: '.feedbacks-button-prev',
+    },
+    pagination: {
+      el: '.custom-swiper-pagination',
+      type: 'bullets',
+      clickable: true,
+      dynamicBullets: true,
+    },
+  });
+
+const renderFeedbacks = async () => {
   try {
     const data = await feedbacksApi();
-    if (data) {
+    if (!data.feedbacks?.length) {
+      throw new Error('No feedback is currently available');
     }
-    ulEl.insertAdjacentHTML('afterbegin', createMarkup(data.feedbacks));
+    ulEl.replaceChildren(createFeedbackItems(data.feedbacks));
   } catch (error) {
-    console.log(error);
+    errorNotification(error.message ?? 'Unable to load feedback');
+  } finally {
+    initSwiper();
   }
 };
-renderMarkUp();
 
-new Swiper('.swiper', {
-  modules: [Navigation, Pagination, Mousewheel, Keyboard],
-  spaceBetween: 24,
-  speed: 500,
-  // Responsive breakpoints
-  breakpoints: {
-    320: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 3,
-    },
-  },
-  mousewheel: {
-    forceToAxis: true,
-  },
-
-  keyboard: {
-    enabled: true,
-    onlyInViewport: true,
-  },
-  navigation: {
-    nextEl: '.feedbacks-button-next',
-    prevEl: '.feedbacks-button-prev',
-  },
-  pagination: {
-    el: '.custom-swiper-pagination',
-    type: 'bullets',
-    clickable: true,
-    dynamicBullets: true,
-  },
-});
+renderFeedbacks();

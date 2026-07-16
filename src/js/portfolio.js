@@ -1,4 +1,4 @@
-import notification from './ notification.js';
+import notification from './notification.js';
 import errorNotification from './errorNotification.js';
 
 import { categoriesApi, weddingPhotosApi } from './api.js';
@@ -13,25 +13,30 @@ const currentUploadedPhotos = document.querySelector(
 const totalAmountPhotos = document.querySelector('.portfolio-total-amount');
 loadMoreBtn.disabled = true;
 
-const createButtonMarkUp = categories => {
-  return categories
-    .map(({ _id, category }) => {
-      return `
-        <li data-id="${_id}">
-            <button type="button" class="portfolio-button" data-id="${_id}">
-                ${category}
-            </button>
-        </li>
-        `;
-    })
-    .join('');
+const createCategoryButtons = categories => {
+  const fragment = document.createDocumentFragment();
+
+  categories.forEach(({ _id, category }) => {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+
+    item.dataset.id = _id;
+    button.type = 'button';
+    button.className = 'portfolio-button';
+    button.dataset.id = _id;
+    button.textContent = category;
+    item.append(button);
+    fragment.append(item);
+  });
+
+  return fragment;
 };
 const renderButtons = async () => {
   try {
     const data = await categoriesApi();
-    categoriesBtnList.insertAdjacentHTML('beforeend', createButtonMarkUp(data));
+    categoriesBtnList.append(createCategoryButtons(data));
   } catch (error) {
-    console.log(error);
+    errorNotification(error.message ?? 'Unable to load categories');
   }
 };
 renderButtons();
@@ -46,15 +51,23 @@ const paginationUpdate = (counted, items) => {
   currentUploadedPhotos.textContent = counted;
   totalAmountPhotos.textContent = items;
 };
-const createGalleryMarkup = array => {
-  return array
-    .map(({ _id, img, title }) => {
-      return `  
-        <li class="portfolio-gallery-item" data-id="${_id}">
-            <img src="${img}" alt="${title}">
-        </li>`;
-    })
-    .join('');
+const createGalleryItems = photos => {
+  const fragment = document.createDocumentFragment();
+
+  photos.forEach(({ _id, img, title }) => {
+    const item = document.createElement('li');
+    const image = document.createElement('img');
+
+    item.className = 'portfolio-gallery-item';
+    item.dataset.id = _id;
+    image.src = img;
+    image.alt = title;
+    image.loading = 'lazy';
+    item.append(image);
+    fragment.append(item);
+  });
+
+  return fragment;
 };
 const reset = () => {
   galleryList.innerHTML = '';
@@ -64,13 +77,13 @@ const reset = () => {
   categoryId = null;
   totalCounted = 0;
 };
-const desabledLoadButton = bool => {
+const setLoadButtonDisabled = bool => {
   loadMoreBtn.disabled = bool;
 };
 const renderGalleryImages = async () => {
   reset();
   showLoader();
-  desabledLoadButton(true);
+  setLoadButtonDisabled(true);
 
   try {
     const data = await weddingPhotosApi({});
@@ -81,25 +94,21 @@ const renderGalleryImages = async () => {
     if (data.weddingPhotos.length === 0) {
       throw new Error('Empty array');
     }
-    galleryList.insertAdjacentHTML(
-      'beforeend',
-      createGalleryMarkup(data.weddingPhotos)
-    );
-    desabledLoadButton(false);
+    galleryList.append(createGalleryItems(data.weddingPhotos));
+    setLoadButtonDisabled(totalCounted >= totalItems);
     hideLoader();
   } catch (error) {
-    console.log(error);
-    errorNotification(error)
+    errorNotification(error.message ?? 'Unable to load photos');
     reset();
-    desabledLoadButton(true);
+    setLoadButtonDisabled(true);
     hideLoader();
   }
 };
 renderGalleryImages();
 const resetCredentials = (counted, items) => {
   if (counted >= items) {
-    notification('NO MORE CONTENT')
-    desabledLoadButton(true);
+    notification('NO MORE CONTENT');
+    setLoadButtonDisabled(true);
     hideLoader();
     return true;
   }
@@ -114,21 +123,17 @@ const handleLoadMoreButton = async () => {
     totalCounted += data.weddingPhotos.length;
     pageNumber += 1;
     paginationUpdate(totalCounted, totalItems);
-    galleryList.insertAdjacentHTML(
-      'beforeend',
-      createGalleryMarkup(data.weddingPhotos)
-    );
+    galleryList.append(createGalleryItems(data.weddingPhotos));
 
     if (resetCredentials(totalCounted, totalItems)) {
       return;
     }
 
-    desabledLoadButton(false);
+    setLoadButtonDisabled(false);
     hideLoader();
   } catch (error) {
-    console.log(error);
-     errorNotification(error);
-    desabledLoadButton(true);
+    errorNotification(error.message ?? 'Unable to load more photos');
+    setLoadButtonDisabled(true);
     hideLoader();
   }
 };
@@ -144,7 +149,7 @@ const onCategoryButtons = async e => {
     return;
   }
   handleActiveButton(targetButton);
-  desabledLoadButton(true);
+  setLoadButtonDisabled(true);
   showLoader();
   reset();
   categoryId = targetButton.dataset.id;
@@ -157,20 +162,16 @@ const onCategoryButtons = async e => {
     if (data.weddingPhotos.length === 0) {
       throw new Error('Empty array');
     }
-    galleryList.insertAdjacentHTML(
-      'beforeend',
-      createGalleryMarkup(data.weddingPhotos)
-    );
-    desabledLoadButton(false);
+    galleryList.append(createGalleryItems(data.weddingPhotos));
+    setLoadButtonDisabled(false);
     if (resetCredentials(totalCounted, totalItems)) {
-      desabledLoadButton(true);
+      setLoadButtonDisabled(true);
       return;
     }
     hideLoader();
   } catch (error) {
-    console.log(error);
-     errorNotification(error)
-    desabledLoadButton(true);
+    errorNotification(error.message ?? 'Unable to load this category');
+    setLoadButtonDisabled(true);
     hideLoader();
   }
 };

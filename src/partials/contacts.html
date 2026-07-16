@@ -18,19 +18,32 @@
         <address class="contact-address">
           <ul class="contact-address-list">
             <li class="contact-address-item">
-              <a href="mailto:" class="contact-address-link">
-                <svg width="24" height="24" class="contact-address-svg">
+              <a
+                href="mailto:info@mariakovalenko.com"
+                class="contact-address-link"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  class="contact-address-svg"
+                  aria-hidden="true"
+                >
                   <use href="/img/sprite.svg#icon-mail"></use>
                 </svg>
                 info@mariakovalenko.com</a
               >
             </li>
             <li class="contact-address-item">
-              <a href="tel:+" class="contact-address-link">
-                <svg width="24" height="24" class="contact-address-svg">
+              <a href="tel:+405551234567" class="contact-address-link">
+                <svg
+                  width="24"
+                  height="24"
+                  class="contact-address-svg"
+                  aria-hidden="true"
+                >
                   <use href="/img/sprite.svg#icon-call"></use>
                 </svg>
-                +40 (555) 123-4567
+                +40&nbsp;(555)&nbsp;123&#8209;4567
               </a>
             </li>
             <li class="contact-address-item">
@@ -40,7 +53,12 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <svg width="24" height="24" class="contact-address-svg">
+                <svg
+                  width="24"
+                  height="24"
+                  class="contact-address-svg"
+                  aria-hidden="true"
+                >
                   <use href="/img/sprite.svg#icon-location"></use>
                 </svg>
                 Raschdorffstraße 2-26, 13409 Berlin, Germany</a
@@ -51,7 +69,7 @@
       </div>
 
       <div class="contacts-form-wrapper">
-        <form class="contacts-form" novalidate>
+        <form class="contacts-form">
           <label>
             Name*
             <input
@@ -60,7 +78,7 @@
               placeholder="Maria"
               aria-describedby="name-error"
               required
-            />
+            >
             <span class="form-error" id="name-error">
               Please enter your name
             </span>
@@ -71,20 +89,25 @@
               type="tel"
               name="phone"
               placeholder="1 (202) 1111 2323"
-              pattern="[0-9]{12}"
+              pattern="[+0-9() -]{7,20}"
               aria-describedby="phone-error"
               required
-            />
+            >
             <span class="form-error" id="phone-error">
               Please enter your phone
             </span>
           </label>
           <label>
-            Message
+            Message*
             <textarea
               name="message"
               placeholder="Tell me a little about you and your special day. Don't forget to include your wedding date, venue, and what you're most excited about..."
+              aria-describedby="message-error"
+              required
             ></textarea>
+            <span class="form-error" id="message-error">
+              Please enter your message
+            </span>
           </label>
           <button type="submit" class="contacts-form-button">Let's Talk</button>
         </form>

@@ -1,12 +1,12 @@
 <header class="header">
   <div class="container">
     <div class="header-container">
-      <a href="/index.html" class="logo-header">
-        <svg width="70" height="55" class="logo-svg">
+      <a href="./index.html" class="logo-header" aria-label="Home">
+        <svg width="70" height="55" class="logo-svg" aria-hidden="true">
           <use href="/img/sprite.svg#icon-logo"></use>
         </svg>
       </a>
-      <nav class="header-nav">
+      <nav class="header-nav" aria-label="Desktop navigation">
         <ul class="header-nav-list">
           <li class="header-nav-item"><a href="#about">About Me</a></li>
           <li class="header-nav-item"><a href="#benefits">Benefits</a></li>
@@ -17,29 +17,49 @@
           <a href="#contacts" class="button">Book a Session</a>
         </div>
       </nav>
-      <button type="button" class="burger-btn">
-        <svg width="24" height="24">
+      <button
+        type="button"
+        class="burger-btn"
+        aria-label="Open menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <svg width="24" height="24" aria-hidden="true">
           <use href="/img/sprite.svg#icon-menu"></use>
         </svg>
       </button>
     </div>
   </div>
-    <div class="mob-menu">
+    <div class="mob-menu" id="mobile-menu" inert>
       <div class="container">
         <div class="mob-menu-wrapper">
-          <a href="/" class="logo-header">
-            <svg width="70" height="55" class="logo-svg">
+          <a href="./index.html" class="logo-header" aria-label="Home">
+            <svg
+              width="70"
+              height="55"
+              class="logo-svg"
+              aria-hidden="true"
+            >
               <use href="/img/sprite.svg#icon-logo"></use>
             </svg>
           </a>
-          <button type="button" class="mob-menu-close-btn">
-            <svg width="24" height="24" class="logo-svg">
+          <button
+            type="button"
+            class="mob-menu-close-btn"
+            aria-label="Close menu"
+          >
+            <svg
+              width="24"
+              height="24"
+              class="logo-svg"
+              aria-hidden="true"
+            >
               <use href="/img/sprite.svg#icon-close"></use>
             </svg>
           </button>
         </div>
         <div class="mob-menu-nav-wrapper">
-          <nav class="mob-menu-nav">
+          <nav class="mob-menu-nav" aria-label="Mobile navigation">
             <ul class="mob-menu-nav-list">
               <li class="mob-menu-nav-item"><a href="#about">About Me</a></li>
               <li class="mob-menu-nav-item">

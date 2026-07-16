@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-const notification = (message) => {
+const notification = message => {
   let timerInterval;
   Swal.fire({
     title: `${message} <br><b></b>`,
@@ -16,7 +16,7 @@ const notification = (message) => {
     willClose: () => {
       clearInterval(timerInterval);
     },
-  })
+  });
 };
 
 export default notification;
